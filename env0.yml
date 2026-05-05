@@ -23,11 +23,12 @@
 # =============================================================================
 
 version: 2
-shell: bash
+
 deploy:
   steps:
     terraformPlan:
       before:
+        - name "Run Custom Script"
           echo "Installing dependencies..."
           apt-get install -y -qq curl jq 2>/dev/null || true
           echo "Making script executable..."
