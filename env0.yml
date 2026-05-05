@@ -23,11 +23,12 @@
 # =============================================================================
 
 version: 1
-
+ 
 deploy:
   steps:
-    - name: Resolve Pending Approvals
-      command: |
+    before_apply:
+      - name: Resolve Pending Approvals
+        command: |
         echo "Installing dependencies..."
         apt-get install -y -qq curl jq 2>/dev/null || true
 
