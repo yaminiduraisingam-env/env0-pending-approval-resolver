@@ -1,0 +1,38 @@
+# =============================================================================
+# env0 Custom Flow — Pending Approval Resolver
+# =============================================================================
+# This custom flow runs the resolver script BEFORE the Terraform no-op apply.
+#
+# If the script exits with a non-zero code (e.g. API error, auth failure,
+# jq parse error), the entire deployment is marked as FAILED so the issue
+# is visible in the env0 UI and does not silently pass.
+#
+# Environment variables required (set these as env0 environment variables
+# or configuration variables on the project):
+#
+#   For org-level (production):
+#     ENV0_API_KEY              — Your env0 API key
+#     ENV0_ORGANIZATION_ID      — Your env0 organization ID
+#
+#   For project-level (testing):
+#     ENV0_API_KEY              — Your env0 API key
+#     ENV0_PROJECT_ID           — The project ID to scope the scan to
+#
+# To switch between org-level and project-level, change the command below
+# from check-pending-approvals-org.sh to check-pending-approvals-project.sh
+# =============================================================================
+
+version: 1
+
+deploy:
+  steps:
+    - name: Resolve Pending Approvals
+      command: |
+        echo "Installing dependencies..."
+        apt-get install -y -qq curl jq 2>/dev/null || true
+
+        echo "Making script executable..."
+        chmod +x scripts/check-pending-approvals-org.sh
+
+        echo "Running resolver..."
+        bash scripts/check-pending-approvals-org.sh
