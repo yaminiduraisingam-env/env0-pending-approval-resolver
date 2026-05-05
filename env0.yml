@@ -33,6 +33,6 @@ deploy:
             echo "Installing dependencies..."
             apt-get install -y -qq curl jq 2>/dev/null || true
             echo "Making script executable..."
-            chmod +x scripts/check-pending-approvals-project.sh
+            chmod +x scripts/audit-pending-approvals-org.sh
             echo "Running resolver..."
-            bash scripts/check-pending-approvals-project.sh
+            bash scripts/audit-pending-approvals-org.sh
