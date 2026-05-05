@@ -24,7 +24,7 @@ set -euo pipefail
 # ── Config ────────────────────────────────────────────────────────────────────
 BASE_URL="https://api.env0.com"
 API_KEY="${ENV0_API_KEY:?ERROR: ENV0_API_KEY environment variable is not set}"
-PROJECT_ID="${ENV0_PROJECT_ID:?ERROR: ENV0_PROJECT_ID environment variable is not set}"
+PROJECT_ID="${TARGET_PROJECT_ID:?ERROR: TARGET_PROJECT_ID environment variable is not set}"
 PAGE_LIMIT=100
 
 # ── Counters & log file ───────────────────────────────────────────────────────
