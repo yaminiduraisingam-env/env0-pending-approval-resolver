@@ -1,0 +1,12 @@
+version: 2
+shell: bash
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - name: Resolve Pending Approvals
+          run: |
+            apt-get install -y -qq curl jq 2>/dev/null || true
+            chmod +x scripts/resolve-on-change-project.sh
+            bash scripts/resolve-on-deploy.sh
