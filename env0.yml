@@ -32,7 +32,7 @@ deploy:
         apt-get install -y -qq curl jq 2>/dev/null || true
 
         echo "Making script executable..."
-        chmod +x scripts/check-pending-approvals-org.sh
+        chmod +x scripts/check-pending-approvals-project.sh
 
         echo "Running resolver..."
-        bash scripts/check-pending-approvals-org.sh
+        bash scripts/check-pending-approvals-project.sh
