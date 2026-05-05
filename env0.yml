@@ -28,10 +28,11 @@ deploy:
   steps:
     terraformPlan:
       before:
-        - name "Run Custom Script"
-          echo "Installing dependencies..."
-          apt-get install -y -qq curl jq 2>/dev/null || true
-          echo "Making script executable..."
-          chmod +x scripts/check-pending-approvals-project.sh
-          echo "Running resolver..."
-          bash scripts/check-pending-approvals-project.sh
+        - name: "Run Custom Script"
+          run: |
+            echo "Installing dependencies..."
+            apt-get install -y -qq curl jq 2>/dev/null || true
+            echo "Making script executable..."
+            chmod +x scripts/check-pending-approvals-project.sh
+            echo "Running resolver..."
+            bash scripts/check-pending-approvals-project.sh
