@@ -22,8 +22,8 @@
 # from check-pending-approvals-org.sh to check-pending-approvals-project.sh
 # =============================================================================
 
-version: 1
- 
+version: 2
+shell: bash
 deploy:
   steps:
     terraformPlan:
